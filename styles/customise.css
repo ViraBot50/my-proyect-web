@@ -72,3 +72,13 @@ margin-top: 1em !important;
 .money::before{
    content: "$";
 }
+
+.no-spin::-webkit-outer-spin-button,
+.no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.no-spin {
+    -moz-appearance: textfield;
+}

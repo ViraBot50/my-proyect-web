@@ -103,7 +103,7 @@ class Ventas{
 			else if (this.a_producto.m_hayInventario(v_cantidad))
 				this.m_accion('insertVenta',this.a_producto);
 			else 
-				this.m_alert("La cantidad del inventario no cumple con la demanda \n cantidad diponible: "+this.a_producto.a_cantdisponible,"No se puede Incrementar")
+				this.m_alert("La cantidad del inventario no cumple con la demanda <br> cantidad diponible: "+this.a_producto.a_cantdisponible,"No se puede Incrementar")
 
 		else
 				this.m_alert("Ingrese una cantidad de producto valido","Datos invalidos");
@@ -126,10 +126,10 @@ class Ventas{
 			this.a_valoPrevio=v_inputCantidad.value;
 			v_inputCantidad.value=v_cantfinal;
 			this.m_update(v_container);
-			this.m_alert("Producto "+p_producto.a_name+"\n actualizado a "+v_cantfinal+" Unidades");
+			this.m_alert("Producto "+p_producto.a_name+"<br> actualizado a "+v_cantfinal+" Unidades","Actualizacion de cantidad");
 		}
 		else
-			this.m_alert("No es posble comprar "+v_cantfinal+" Unidades de "+this.a_producto.a_name+"\n cantidad disponible :"+p_producto.a_cantdisponible);
+			this.m_alert("No es posble comprar "+v_cantfinal+" Unidades de "+this.a_producto.a_name+"<br> cantidad disponible :"+p_producto.a_cantdisponible,"Advertencia");
 
 	}
 

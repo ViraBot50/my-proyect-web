@@ -69,7 +69,7 @@ $oCP=new classVender();
  
 
 
-    	<button  class="col-2 btn btn-success lem-1" type="submit"  name="action" value="cobrar">New</button>
+    	<button  class="col-2 btn btn-success lem-1" type="submit"  name="action" value="cobrar" onclick="location.reload();">New</button>
 
     </div>
 

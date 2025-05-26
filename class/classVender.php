@@ -65,7 +65,7 @@ class classvender extends classDB{
 
 	private function m_creaComponente($p_idProduct,$p_fechRegistro,$p_precVenta,$p_cantDisponible,$p_nombre,$p_cantComprar){
 		$html= '<div id="'.$p_idProduct.'" class="producto-container">'.
-    			'<input type="number" name="producto['.$p_idProduct.'][cantidad]" value="'.$p_cantComprar.'" max="'.$p_cantDisponible.'" class="col-3 btn" onchange="a_obj.m_update(this.parentElement)"  onfocus="a_obj.setPrevio(this.parentElement)" min="1">'.
+    			'<input type="number" name="producto['.$p_idProduct.'][cantidad]" value="'.$p_cantComprar.'" max="'.$p_cantDisponible.'" class="col-3 btn no-spin" onchange="a_obj.m_update(this.parentElement)"  onfocus="a_obj.setPrevio(this.parentElement)" min="1">'.
                 '<label class="col-3 text-center">'.$p_nombre.'</label>'.
                 '<input type="text" name="producto['.$p_idProduct.'][precVenta]" value="'.$p_precVenta.'" class="col-3 btn" readonly>'.
                 '<label class="col-3 text-center separete-top">'.
