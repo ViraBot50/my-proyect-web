@@ -13,7 +13,7 @@ include 'header.php';
 
 ?>
 
-	 <script src="../controllers/vender.js" type="module"></script>
+	 <script src="../controllers/encargar.js" type="module"></script>
 
 <section class="container" id="c_main"> 
 

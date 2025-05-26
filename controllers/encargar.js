@@ -15,13 +15,12 @@ class Ventas{
 
 
 	m_accion(p_accion,p_producto){
-		console.log(p_accion);
 
 		switch(p_accion){
 			case 'insertVenta':
 				c_total.innerHTML=parseInt(this.a_inpuCantidad.value)*parseInt(p_producto.a_precio)+parseInt(c_total.innerHTML);
 				$.ajax({
-     					url:"../class/classVender.php",
+     					url:"../class/classEncargos.php",
         				type:"post",
         				data: 	{accion:p_accion,
         						id_producto:p_producto.a_id,
@@ -42,7 +41,7 @@ class Ventas{
 				var v_componentes=document.getElementById(p_producto).children;
 
 				$.ajax({
-     					url:"../class/classVender.php",
+     					url:"../clander.php",
         				type:"post",
         				data: 	{accion:p_accion,
         						fecha_venta:v_componentes[4].value,
@@ -57,7 +56,7 @@ class Ventas{
 			case 'update':
 
 				$.ajax({
-     					url:"../class/classVender.php",
+     					url:"../cl.php",
         				type:"post",
         				data: 	p_producto,
         				success: (html) => {
@@ -74,7 +73,19 @@ class Ventas{
         				type:"post",
         				data: 	$("#formFecha").serialize(),
         				success: (html) => {
-							 c_.main=html;
+							if (html!=="0")
+								$.ajax({
+     								url:"encargar.php",
+        							type:"post",
+        							data: 	{fecha:html},
+        						success: (html) => {
+									 document.body.innerHTML=html;					
+        						}
+                      		});
+							else
+								this.m_alert("No hay ningun evento ese dia","Fecha Incorrecta")	
+
+
         				}
                       });
 			break;

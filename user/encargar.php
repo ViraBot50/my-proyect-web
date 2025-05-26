@@ -1,15 +1,10 @@
 <?  
-if (session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) 
     session_start();  
-}
 
-
-if (!isset($_SESSION['fecha']))
-	header('location: geneEncargo.php?not=2');
 
 include '../class/classEncargos.php';
 include 'header.php';
-
 
 
 
@@ -21,20 +16,14 @@ $data=null;
 
 		
 ?>
-	
-
-
-
-
-
-
+	<script src="../controllers/encargar.js" type="module"></script>
 
   <main class="bg-secondary p-3 scrollable-content">
     <div class="container" >
 
  
     		<div class="card border-primary mb-3" style="max-width: 80rem;">
-  				<div class="card-header"> <? echo $oCP->m_geneTitulo($data->Arrendatario,$_SESSION['fecha']) ?> </div>
+  				<div class="card-header"> <? echo $oCP->m_geneTitulo($data->Arrendatario,$_POST['fecha']) ?> </div>
   				<div class="card-body scrollable-content">
 
   					
@@ -73,7 +62,7 @@ $data=null;
 
 			<input class="col-2 lem-1" type="number" value="1" min="1" name="cantidad" placeholder="Cantidad a Comprar" id="cantComprar">
 
-    	<button class="col-2 btn btn-warning lem-1" id="btnAgregar">Agregar</button>
+    	<button class="col-2 btn btn-warning lem-1" id="btnAgregar" onclick="a_obj.m_AgregarCompra()">Agregar</button>
  
 
 

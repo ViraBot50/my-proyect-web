@@ -8,6 +8,7 @@ if (!isset($_SESSION['Id']))
 
 
 class classEncargos extends classDB{
+	private $a_idRenta;
 
  function constructor (){
 	}
@@ -17,6 +18,8 @@ class classEncargos extends classDB{
 	{
 		$html='hello';
 		switch ($event) {
+
+			case 'veriFecha':$html=$this->m_veriFecha(); break;
 
 			case 'insertVenta': $html=$this->m_inseVenta(); break;
 
@@ -29,6 +32,70 @@ class classEncargos extends classDB{
 		}
 
 		return $html;
+	}
+
+
+		function m_geneTitulo($nombre,$fecha){
+			$v_total=$this->retieve1("SELECT coalesce(sum(cantidad*Precio_venta),0) as total from encargos e where id_renta={$this->a_idRenta}")->total;
+
+
+		$html= '<div class="row">  
+					<div class="col-2 fw-bold">Arrendatario:</div>
+					<div class="col-5 ">'.$nombre.'</div>
+					<div class="col-3 text-end">Total=</div>	
+					<div class="col-2 text-begin money">'.(int)$v_total.'</div>						
+				</div>
+				<div class="row">  
+					<div class="col-2 fw-bold text-center">Fecha:</div>
+					<div class="col-10">'.$fecha.'</div>					
+				</div>';
+
+		return $html;
+	}
+
+
+
+
+	public function m_geneProductos($id_encargo){
+		$html='';
+
+		$this->query("SELECT  (SELECT Nombre from producto p where e.id_producto=p.id) as Nombre,e.* from encargos e where id_renta={$id_encargo}");
+
+		foreach ($this->registros as $producto) {
+    $id = $producto['Id_producto'];
+    $nombre = $producto['Nombre'];
+    $precio = $producto['Precio_venta'];
+    $cantidad = $producto['Cantidad'];
+
+    $html .= $this->m_creaComponente($id,$precio,$nombre,$cantidad);
+}
+
+
+
+		return $html;
+
+	}
+
+
+
+	public function m_getRenta(&$p_numeRows){
+		$v_respuesta= $this->retieve1("SELECT r.Id,(SELECT concat(nombre,' ',primer_apellido,' ',segundo_apellido) from usuario u where r.id_usuario=u.id) as Arrendatario from renta r where r.id_estatus=1 and r.fecha_evento='{$_POST['fecha']}'");
+		$this->a_idRenta=$v_respuesta->Id;
+		$p_numeRows= $this->numeRegistros;
+		return $v_respuesta;
+	}
+
+
+
+	private function m_veriFecha(){
+		 $this->retieve1("SELECT r.Id,(SELECT concat(nombre,' ',primer_apellido,' ',segundo_apellido) from usuario u where r.id_usuario=u.id) as Arrendatario from renta r where r.id_estatus=1 and r.fecha_evento='{$_POST['fecha']}'");
+	
+
+		if ($this->numeRegistros>0){
+			echo $_POST['fecha'];
+		}else 
+			echo "0";
+
 	}
 
 
@@ -62,11 +129,12 @@ class classEncargos extends classDB{
 
 		return $html;
 	}
+	
 
 
-	private function m_creaComponente($p_idProduct,$p_fechRegistro,$p_precVenta,$p_cantDisponible,$p_nombre,$p_cantComprar){
+	private function m_creaComponente($p_idProduct,$p_precVenta,$p_nombre,$p_cantComprar){
 		$html= '<div id="'.$p_idProduct.'" class="producto-container">'.
-    			'<input type="number" name="producto['.$p_idProduct.'][cantidad]" value="'.$p_cantComprar.'" max="'.$p_cantDisponible.'" class="col-3 btn no-spin" onchange="a_obj.m_update(this.parentElement)"  onfocus="a_obj.setPrevio(this.parentElement)" min="1">'.
+    			'<input type="number" name="producto['.$p_idProduct.'][cantidad]" value="'.$p_cantComprar.'"  class="col-3 btn no-spin" onchange="a_obj.m_update(this.parentElement)"  onfocus="a_obj.setPrevio(this.parentElement)" min="1">'.
                 '<label class="col-3 text-center">'.$p_nombre.'</label>'.
                 '<input type="text" name="producto['.$p_idProduct.'][precVenta]" value="'.$p_precVenta.'" class="col-3 btn" readonly>'.
                 '<label class="col-3 text-center separete-top">'.
@@ -74,7 +142,6 @@ class classEncargos extends classDB{
                         '<i class="fa fa-trash"></i>'.
                     '</button>'.
                 '</label>'.
-                '<input type="hidden" value="'.$p_fechRegistro.'"></input>'.
             '</div>';
 		return $html;
 	}
@@ -133,7 +200,7 @@ class classEncargos extends classDB{
 
 
 if (isset($_POST['accion'])){
-	$obj=new classVender();
+	$obj=new classEncargos();
 	echo $obj->m_action($_POST['accion']);
 }
 

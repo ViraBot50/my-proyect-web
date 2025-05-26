@@ -41,7 +41,7 @@ else
     <script src="../js/jquery-confirm.js"></script>
 
 
-}
+
 
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bungee+Tint&family=Gravitas+One&family=Oleo+Script:wght@400;700&family=Sigmar&display=swap');
