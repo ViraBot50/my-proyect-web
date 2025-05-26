@@ -1,0 +1,74 @@
+.items {
+	width: 100%;
+	height: auto;
+	background-color: green;
+}
+
+
+.sigmar-regular {
+  font-family: "Sigmar", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+
+
+.gravitas-one-regular {
+  font-family: "Gravitas One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-margin-top{
+  margin-top: 15px;
+}
+
+.separete-top{
+margin-top: 1em !important;
+}
+
+.bg-complete .row{
+  width: 100% !important;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 1%;             /* Ajusta la distancia del footer desde el fondo */
+  width: 100%;            /* Ocupa todo el ancho de la pantalla */
+  height: 60px;           /* Ajusta la altura del footer */
+  display: flex;          /* Usamos flexbox para centrar el contenido */
+  justify-content: center;/* Centra el contenido horizontalmente */
+  align-items: center;    /* Centra el contenido verticalmente */
+}
+
+ .full-height-body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+
+.lem-3{
+  margin-left: 3em !important;
+}
+
+
+.lem-2{
+  margin-left: 2em !important;
+}
+
+.lem-1{
+  margin-left: 1em !important;
+}
+
+
+.money::before{
+   content: "$";
+}
