@@ -1,6 +1,6 @@
 <?  
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();  // ✅ Se asegura de que la sesión esté iniciada
+    session_start();  
 }
 
 
@@ -20,23 +20,9 @@ $data=null;
 		$data=$oCP->m_getRenta($_numeRows);	
 
 		
-
-
 ?>
 	
-	<script>
-		function m_borrar(id_producto){
-		document.getElementById(id_producto).remove();
-		}
 
-
-		function eliminarProducto(event) {
-  		const btn = event.target; 
-  		const contenedor = btn.closest('.alert'); 
-  		contenedor.classList.add('d-none'); 
-		}
-
-	</script>	
 
 
 
@@ -65,8 +51,8 @@ $data=null;
  					if (isset($_POST['action']))
  						echo $oCP->m_action($_POST['action']);
  				?>		
-  					<div class="scrollable-content" style="max-height: 20em; height: 20em; overflow-x: hidden;"> 
-  						<form method="POST"  id="formulario" class="row" >
+  					<div class="scrollable-content" style="max-height: 18em; height: 18em; overflow-x: hidden;"> 
+  						<form  id="formulario" class="row" >
   							<? echo  $oCP->m_geneProductos($data->Id) ?>
   						</form>
   					</div>
@@ -99,6 +85,5 @@ $data=null;
 
 
 
-	 <script src="../js/addProduct.js" type="module" defer></script>
 	</body>
 </html>
