@@ -28,7 +28,7 @@ function control(p_accion,id,text){
         })
 
          $.ajax({
-        url:"../class/classProducts.php?accion="+p_accion,
+        url:"../class/classRenta.php?accion="+p_accion,
         type:"post",
         data: $("#form_usuario").serialize(),// {p_accion:cual},
         beforeSend: function(){control.innerHTML='<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"><span class="">Loading...</span>'},
@@ -42,10 +42,10 @@ function control(p_accion,id,text){
         break;
     case 'insert_renta':
         $.ajax({
-        url:"../class/classProducts.php?accion="+p_accion,
+        url:"../class/classRenta.php?accion="+p_accion,
         type:"post",
         data: $("#form_renta").serialize(),// {p_accion:cual},
-        beforeSend: function(){alert('<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"><span class="">Loading...</span>')},
+        //beforeSend: function(){alert('<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"><span class="">Loading...</span>')},
         success: function(html){dinamic_data.innerHTML=html;}
                       });
 

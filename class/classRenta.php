@@ -6,7 +6,7 @@ if (!isset($_SESSION['Id']))
 include '../class/classDB.php';
 
 
-class classProducts extends classDB{
+class classRenta extends classDB{
 	
 
 
@@ -18,7 +18,6 @@ class classProducts extends classDB{
 	{
 		$html='';
 		switch ($event) {
-			case 'insertVenta': $html=$this->m_inseVenta(); break;
 
 			case 'geneFormRenta':$html=$this->m_geneFormRenta(); break;
 
@@ -34,15 +33,6 @@ class classProducts extends classDB{
 
 
 
-	private function m_inseVenta(){
-		$v_idActual=$this->retieve1("SELECT coalesce(max(Id),0) AS Id from ventas")->Id+1;
-		$html=$this->m_creaComponente($_POST['id_producto'],$v_idActual,$_POST['Precio_venta'],$_POST['Cantidad_disponible'],$_POST['nombre'],$_POST['cantidad']);
-
-		//$this->queryIDU("INSERT INTO ventas set Id_vendedor={$_SESSION['Id']}, Id_producto={$_POST['id_producto']}, Precio_venta={$_POST['Precio_venta']}, fecha_venta='".date('Y-m-d H:i:s')."',cantidad={$_POST['cantidad']}");
-
-
-		return $html;
-	}
 
 
 	private function m_creaComponente($p_idProduct,$p_idVenta,$p_precVenta,$p_cantDisponible,$p_nombre,$p_cantComprar){
@@ -102,7 +92,7 @@ class classProducts extends classDB{
 		 $this->queryIDU("INSERT INTO usuario set nombre='{$_POST['nombre']}', primer_apellido='{$_POST['primer_apellido']}', segundo_apellido='{$_POST['segundo_apellido']}', telefonos='{$_POST['telefono']}'");
 		}
 
-		sleep(1);
+		//sleep(1);
 
 
 		return $v_msg.$this->m_geneFormRenta();
@@ -200,9 +190,9 @@ class classProducts extends classDB{
 }
 
 
-if (isset($_POST['accion'])){
-	$obj=new classProducts();
-	echo $obj->m_action($_POST['accion']);
+if (isset($_GET['accion'])){
+	$obj=new classRenta();
+	echo $obj->m_action($_GET['accion']);
 }
 
 

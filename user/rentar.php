@@ -1,11 +1,11 @@
 <?  
 include 'header.php';
-include '../class/classProducts.php';
-$obj=new classProducts();
+include '../class/classRenta.php';
+$obj=new classRenta();
 ?>
 
 	<script src="../controllers/rentar.js"></script>
-	
+	 
 
 	<section class="p-3 m-3" id="sec_rentar">
 		<div class="bg-light form-control" id="formulario" onsubmit="return false;" >
