@@ -7,7 +7,6 @@ include '../class/classEncargos.php';
 include 'header.php';
 
 
-
 $oCP=new classEncargos();
 $data=null;
 
@@ -23,7 +22,7 @@ $data=null;
 
  
     		<div class="card border-primary mb-3" style="max-width: 80rem;">
-  				<div class="card-header"> <? echo $oCP->m_geneTitulo($data->Arrendatario,$_POST['fecha']) ?> </div>
+  				<div class="card-header"> <? echo $oCP->m_geneTitulo($data->Arrendatario,$data->fecha_evento) ?> </div>
   				<div class="card-body scrollable-content">
 
   					

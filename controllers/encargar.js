@@ -1,8 +1,13 @@
 import ClassProduct from '../class/classProduct.js';
 
-class Ventas{
+class Encargo{
 
 	constructor (){
+		this.m_buscElementos();
+	}
+
+
+	m_buscElementos(){
 		this.a_producto=new ClassProduct();
 		this.a_btnAgregar=document.getElementById("btnAgregar");
 		this.a_formulario=document.getElementById("formulario");
@@ -24,8 +29,7 @@ class Ventas{
         				type:"post",
         				data: 	{accion:p_accion,
         						id_producto:p_producto.a_id,
-        						Precio_venta:p_producto.a_precio,
-        						Cantidad_disponible:p_producto.a_cantdisponible,
+        						Precio_venta:parseInt(p_producto.a_precio),
         						nombre:p_producto.a_name,
         						cantidad:this.a_inpuCantidad.value
         					},
@@ -41,11 +45,9 @@ class Ventas{
 				var v_componentes=document.getElementById(p_producto).children;
 
 				$.ajax({
-     					url:"../clander.php",
+     					url:"../class/classEncargos.php",
         				type:"post",
-        				data: 	{accion:p_accion,
-        						fecha_venta:v_componentes[4].value,
-        					},
+        				data: 	{accion:p_accion,Id:p_producto},
         				success: function(){
 							 c_total.innerHTML=parseInt(c_total.innerHTML)-parseInt(v_componentes[0].value)*parseInt(v_componentes[2].value);     					
         					document.getElementById(p_producto).remove();
@@ -56,7 +58,7 @@ class Ventas{
 			case 'update':
 
 				$.ajax({
-     					url:"../cl.php",
+     					url:"../class/classEncargos.php",
         				type:"post",
         				data: 	p_producto,
         				success: (html) => {
@@ -73,16 +75,9 @@ class Ventas{
         				type:"post",
         				data: 	$("#formFecha").serialize(),
         				success: (html) => {
-							if (html!=="0")
-								$.ajax({
-     								url:"encargar.php",
-        							type:"post",
-        							data: 	{fecha:html},
-        						success: (html) => {
-									 document.body.innerHTML=html;					
-        						}
-                      		});
-							else
+							if (html!=="0"){
+								window.location.href = "encargar.php";
+							}else
 								this.m_alert("No hay ningun evento ese dia","Fecha Incorrecta")	
 
 
@@ -99,13 +94,11 @@ class Ventas{
 
 	 m_update(p_contenedor){
 	 	var v_compHijos=p_contenedor.children;
-
 	 	if (parseInt(v_compHijos[0].value)>parseInt(v_compHijos[0].max) || v_compHijos[0].value<1)
 	 		v_compHijos[0].value=this.a_valoPrevio;
 	 	else 
-	 		this.m_accion('update',{accion:'update',fecha_venta:v_compHijos[4].value,cantidad:v_compHijos[0].value,diferencia:v_compHijos[0].value-this.a_valoPrevio,Precio_venta:parseInt(v_compHijos[2].value)});
+	 		this.m_accion('update',{accion:'update',Id:p_contenedor.id,cantidad:v_compHijos[0].value,diferencia:v_compHijos[0].value-this.a_valoPrevio,Precio_venta:parseInt(v_compHijos[2].value)});
 
-	 	console.log(this.a_valoPrevio+"->"+p_contenedor.children[0].value);
 	 }
 
 
@@ -164,6 +157,6 @@ class Ventas{
 }
 
 
-const v_obj=new Ventas();
+const v_obj=new Encargo();
 window.a_obj=v_obj;
 

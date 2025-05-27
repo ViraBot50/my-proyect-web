@@ -130,10 +130,8 @@ else
       </ul>
     </div>
       <span class="nav-item sigmar-regular">
-        <a href="" class="">
-        <i class="fa fa-pencil text-white"></i>
-        </a>
-        <?=$_SESSION['Nombre']." ".$_SESSION["Apellidos"]; ?>
+      
+          <?=$_SESSION['Nombre']." ".$_SESSION["Apellidos"]; ?>
         
       </span>
   </div>

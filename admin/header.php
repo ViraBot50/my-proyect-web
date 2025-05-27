@@ -102,7 +102,6 @@
       </ul>
     </div>
       <span class="nav-item sigmar-regular">
-        <i class="fa fa-pencil"></i>
 
         <?=$_SESSION['Nombre']." ".$_SESSION["Apellidos"]; ?>
       
