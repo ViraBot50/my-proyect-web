@@ -164,7 +164,7 @@ class classEncargos extends classDB{
 				
 				$html.='<option data-id="'.$producto["Id"].'"
 								data-precio-venta="'.$producto["Precio_venta"].'"
-								data-cantidad-disponible="'.$producto["Cantidad_disponible"].'"
+								
 						>
 						'.$producto["Nombre"].'
 				</option>';
